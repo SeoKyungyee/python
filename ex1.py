@@ -1,19 +1,30 @@
-name = "박선영" ; avg = 88.3
-print("이름", name, "평균", avg, sep = "||", end = "\n\n")
-name = "장서경" ; avg =92.6
-print("이름", name, "평균", avg, sep = "*****", end = "\t")
-name = "박연우" ; avg =90.3
-print("이름", name, "평균", avg)
-print("출력을 종료합니다!")
+list_1 = [1, 2, 3, 4, 5, 1, 3]
+list_2 = []
+print(list_1)
+print(list_1)
 
-print("2개의 숫자를 입력하세요.")
-num1 = input()
-num2 = input()
-num3 = num1 + num2
-print(num3)
+print(len(list_1))
 
-print("2개의 숫자를 입력하세요.")
-num1 = int(input())
-num2 = int(input())
-num3 = num1 + num2
-print(num3)
+list_1[3] = 9999
+print(list_1)
+
+list_1.append(100)
+print(list_1)
+
+list_1 = [1, 2, 3, 9999, 5, 1, 3, 100]
+list_2 = []
+print(list_1)
+
+list_1.remove(9999)
+print(list_1)
+
+list_1.insert(0.777)
+print(list_1)
+
+list_2 = list_1.copy()
+print(list_2)
+
+list = [1, 2, 3, 5, 1, 3]
+
+for num in list :
+    print(num)
