@@ -1,26 +1,22 @@
 import pandas as pd
+import mariadb
 
-data = {'이름' : ['Kim', 'Park', 'Lee', 'Ho'],
-        '국어' : [90, 58, 88, 100],
-        '영어' : [100, 60, 80, 70],
-        '수학' : [55, 65, 76, 88]}
+conn = mariadb.connect(
+    user="user018"
+    password="!ai123",
+    host="edu.ithows.com",
+    port=53306,
+    database="edudb"
+)
+cursor = conn.cursor()
 
-df = pd.DataFrame(data)
-print(df, end='\n\n')
+cursor.execute('SELECT * FROM city')
+results = cursor.fetchall()
+for row in results:
+    print(row)
+    
+df = pd.DataFrame(results)
+print(df.head(10), end='\n\n')
 
-sr_name = df['이름']
-print(sr_name, end='\n\n')
-
-park_data = df.loc[1]
-print(park_data,end='\n\n')
-park_data = df.loc[df['이름']=='Park']
-print(park_data,end='\n\n')
-
-df.loc[df['이름']=='Ho','수학']=90
-print(df, end='\n\n')
-
-df.loc[5] = ['Oh', 100, 70, 80]
-print(df, end='\n\n')
-
-df.drop([2], axis=0)
-print(df, end='\n\n')
+conn.close()
+    
