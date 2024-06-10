@@ -1,18 +1,21 @@
-dict_1 = {'name': '홍길동', 'birth': 1990, 'addr': 'KR'}
-print(dict_1)
-print(dict_1['birth'])
+import pandas as pd
+import mariadb
 
-dict_1['weight'] = 60.5
-dict_1['family'] = ['아빠', '엄마', '여동생']
-print(dict_1)
+conn = mariadb.connect(
+    user="user018"
+    password="!ai123",
+    host="edu.ithows.com",
+    port=53306,
+    database="edudb"
+)
+cursor = conn.cursor()
 
-dict_1.update({'weight':67.8,'hobby': ['게임', '독서']})
-print(dict_1)
+cursor.execute('SELECT * FROM city ORDER BY population DESC LIMIT 4')
+results = cursor.fetchall()
+for row in results:
+    print(row)
+    
+df = pd.DataFrame(results)
+print(df.head(10), end='\n\n')
 
-dict_1['hobby'] = ['축구','등산']
-print(dict_1)
-
-del dict_1['weight']
-del dict_1['birth']
-del dict_1['addr']
-print(dict_1)
+conn.close()
