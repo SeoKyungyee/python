@@ -1,53 +1,24 @@
 import pandas as pd
 
-data = {
-'과목번호' : ['C1', 'C2', 'C3', 'C4', 'C5', 'C6'],
-'과목명' : ['인공지능개론', '웃음치료', '경영학', '3D디자인', ' 스포츠경영', '예술의 세계'],
-'강의실' : ['R1', 'R2', 'R3', 'R4', 'R5', 'R6'],
-'시간수' : [3, 2, 3, 4, 2, 1]
-}
+data = {'이름' : ['Kim', 'Park', 'Lee', 'Ho'],
+        '국어' : [90, 58, 88, 100],
+        '영어' : [100, 60, 80, 70],
+        '수학' : [55, 65, 76, 88]}
 
 df = pd.DataFrame(data)
-print(df, end='\n\n')
+print(df.describe(), end="\n\n")
 
-sr_name = df['과목명']
-print(sr_name, end='\n\n')
+print("1*************")
+print("국어 평균 : ", df['국어'].mean(), end="\n\n")
+print("국어 중간 : ", df['국어'].median(), end="\n\n")
+print("국어 최소 : ", df['국어'].min(), end="\n\n")
+print("국어 최대 : ", df['국어'].max(), end="\n\n")
 
-sr_no = df.loc[2]
-print(sr_no, end='\n\n')
+print("2*************")
+print("Kim 총점 : ", df.iloc[0, 1:4].sum(), end="\n\n")
+print("Kim 평균 : ", df.iloc[0, 1:4].mean(), end="\n\n")
 
-cell_name = df.loc[2]['과목명']
-print(cell_name)
-
-print("###################################")
-
-df['담당교수'] = ['홍길동', '김철수', '이영희', '박영수', '최영희', '김영수']
-print(df, end='\n\n')
-
-df1 = df.drop(['강의실'], axis=1)
-print(df1, end='\n\n')
-
-df2 = df.drop([5], axis=0)
-print(df2, end='\n\n')
-
-print("###########################################")
-# 행 찾기
-print(df.loc[0:2], end='\n\n')
-# 열 찾기
-print(df[['과목명', '담당교수']], end='\n\n')
-
-# 조건 찾기
-# 행 찾기
-print(df['과목명'] =='경영학', end='\n\n')
-print(df.loc[df['과목명'] =='경영학'], end='\n\n')
-print(df.loc[df['시간수'] >2], end='\n\n')
-
-# 셀 찾기
-print(df.loc[df['과목명'] =='경영학']['담당교수'], end='\n\n')
-print(df.loc[df['과목명'] =='경영학']['담당교수'].values[0], end='\n\n')
-
-df.loc[3, '담당교수'] = '이경영'
-print(df, end='\n\n')
-
-df.loc[df['과목명'] == '경영학', '담당교수'] = '이경영'
-print(df, end='\n\n')
+print("3*************")
+print("수학 4분위 \n", df['수학'].quantile([0.25,0.5,0.75]), end="\n\n")
+print("수학 분산 : ", df['수학'].var(), end="\n\n")
+print("수학 표준편차 : ", df['수학'].std(), end="\n\n")
